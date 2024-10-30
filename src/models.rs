@@ -12,12 +12,6 @@ pub enum UserRole {
 // Implementing methods for UserRole enum
 impl UserRole{
     // Defining a function that returns a string representation of the UserRole
-
-    // ! &self is a reference to the current instance of the UserRole enum. It allows the method to access the instance data without taking ownership.
-    // ! By convention, &self is used for methods that don’t need to mutate or take ownership of the data.
-    // ! Here, it means to_str only reads the data from the instance and doesn’t alter it.
-    // ! -> &'static str
-    // This part is the function's return type. It means that the function returns a &'static str, which is a reference to a string slice with a 'static lifetime.
     pub fn to_str(&self) -> &'static str {
         match self {
             UserRole::Admin => "admin",
@@ -25,6 +19,14 @@ impl UserRole{
         }
     }
 }
+
+// ! &self is a reference to the current instance of the UserRole enum. It allows the method to access the instance data without taking ownership.
+// ! By convention, &self is used for methods that don’t need to mutate or take ownership of the data.
+// ! Here, it means to_str only reads the data from the instance and doesn’t alter it.
+// ! -> &'static str
+// This part is the function's return type. It means that the function returns a &'static str, which is a reference to a string slice with a 'static lifetime.
+
+
 
 // Defining a struct to represent a User with various fields
 #[derive(Serialize, Deserialize, Debug, Clone, sqlx::FromRow, sqlx::Type)]
